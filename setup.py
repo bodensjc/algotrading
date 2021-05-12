@@ -1,6 +1,5 @@
 from hashlib import algorithms_available
 import ccxt
-import config
 import schedule
 import pandas as pd
 pd.set_option('display.max_rows', None)
@@ -14,13 +13,16 @@ import time
 import math
 from itertools import islice
 
+import sys
+sys.path.insert(1, 'C:\\Users\\johnb\\Documents\\algotrading\\.gitignore')
+import config
 exchange = ccxt.binanceus({
     "apiKey": config.BINANCE_API_KEY,
     "secret": config.BINANCE_SECRET_KEY
 })
 
 import os
-os.chdir('C:\\Users\\johnb\\Documents\\algotrading\\binance')
+os.chdir('C:\\Users\\johnb\\Documents\\algotrading')
 
 
 
@@ -252,7 +254,7 @@ class cryptoAccount:
 def account_test():
     myBinance = cryptoAccount(exchange)
     myBinance.fetchBalance()
-    myBinance.buy('BTC', 0.99)
+    #myBinance.buy('BTC', 0.99)
     print(myBinance.cash)
     print(myBinance.holdings)
 

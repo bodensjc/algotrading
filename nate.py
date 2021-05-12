@@ -1,9 +1,5 @@
 import turtle
 
-"""from test_function import greet_user
-
-user = input("What is your username: ")
-greet_user(user)"""
 
 class Polygon:
     def __init__(self, sides, name):
@@ -18,12 +14,30 @@ class Polygon:
             turtle.right(self.angle)
         turtle.done()
 
-square = Polygon(4,"Square")
-pentagon = Polygon(5,"Pentagon")
 
-print(square.sides)
-print(square.name)
-print(pentagon.interior_angles)
-print(pentagon.angle)
+def drawthing():
+    square = Polygon(4,"Square")
+    pentagon = Polygon(5,"Pentagon")
 
-pentagon.draw()
+    print(square.sides)
+    print(square.name)
+    print(pentagon.interior_angles)
+    print(pentagon.angle)
+
+    pentagon.draw()
+
+
+
+def listhelp():
+    lst = [{'asset': 'BTC', 'free': '0.00000062', 'locked': '0.00000000'}]
+    newlst = []
+    for d in lst:
+        if float(d['free']) >= 0.01:
+            newlst.append([d['asset'],float(d['free'])])
+    for el in newlst:
+        print(el[0], el[1])
+
+
+if __name__ == '__main__':
+    listhelp()
+    drawthing()

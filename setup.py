@@ -13,8 +13,7 @@ import time
 import math
 from itertools import islice
 
-import sys
-sys.path.insert(1, 'C:\\Users\\johnb\\Documents\\algotrading\\.gitignore')
+
 import config
 exchange = ccxt.binanceus({
     "apiKey": config.BINANCE_API_KEY,

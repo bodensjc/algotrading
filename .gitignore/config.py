@@ -1,2 +1,0 @@
-BINANCE_API_KEY = 'temp'
-BINANCE_SECRET_KEY = 'temp'

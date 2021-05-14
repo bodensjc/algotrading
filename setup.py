@@ -13,7 +13,6 @@ import time
 import math
 from itertools import islice
 
-
 import config
 exchange = ccxt.binanceus({
     "apiKey": config.BINANCE_API_KEY,
@@ -22,7 +21,6 @@ exchange = ccxt.binanceus({
 
 import os
 os.chdir('C:\\Users\\johnb\\Documents\\algotrading')
-
 
 
 def last14(data):
@@ -151,10 +149,11 @@ def OBV(data):
 def first_run():
     global adaStack 
     datafile = open('datafile.txt', 'a')
+    print('File opened.')
     datafile.write('timestamp\tclose\trsi\tso\twr\temacd\n')
     print(f"Running first pass at {datetime.now().isoformat()}")
     #ohlcv - [UTC, (O)pen, (H)ighest, (L)owest, (C)lose, (V)olume]
-    ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='5m', limit=500)
+    ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='5m', limit=100)
     ADAdata = pd.DataFrame(ADAbars[:-1], columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     ADAdata['timestamp'] = pd.to_datetime(ADAdata['timestamp'], unit='ms')
 
@@ -171,7 +170,7 @@ def first_run():
         adaStack = adaStack.append({'timestamp':time, 'close':close, 'rsi':rsi, 'so':so, 'wr':wr, 'emacd':emacd},ignore_index=True)
         #print(time, rsi, so, wr, emacd)
     datafile.close()
-    print('File opened and saved.')
+    print('File saved.')
 
 
 
@@ -192,6 +191,7 @@ def get_new_data():
         pass
     else:
         datafile = open('datafile.txt', 'a')
+        print('File opened.')
         close = ADAdata.iloc[-1]['close']
         rsi = RSI(ADAdata) # calculate rsi over last 14 periods
         so = SO(ADAdata) # calculate so over last 14 periods
@@ -260,11 +260,10 @@ def account_test():
 
 
 
-
+adaStack = pd.DataFrame(columns = ['timestamp', 'close', 'rsi', 'so', 'wr', 'emacd'])
+orderStack = pd.DataFrame(columns = ['timestamp', 'orderType', 'price', 'fee'])
 
 def main():
-    adaStack = pd.DataFrame(columns = ['timestamp', 'close', 'rsi', 'so', 'wr', 'emacd'])
-    orderStack = pd.DataFrame(columns = ['timestamp', 'orderType', 'price', 'fee'])
     first_run()
     while True:
         schedule.run_pending()
@@ -272,8 +271,9 @@ def main():
 
 
 
+
 if __name__ == '__main__':
-    #main()
-    account_test()
+    main()
+    #account_test()
 
 

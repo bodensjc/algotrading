@@ -153,7 +153,7 @@ def first_run():
     datafile.write('timestamp\tclose\trsi\tso\twr\temacd\n')
     print(f"Running first pass at {datetime.now().isoformat()}")
     #ohlcv - [UTC, (O)pen, (H)ighest, (L)owest, (C)lose, (V)olume]
-    ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='5m', limit=100)
+    ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='5m', limit=50)
     ADAdata = pd.DataFrame(ADAbars[:-1], columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume'])
     ADAdata['timestamp'] = pd.to_datetime(ADAdata['timestamp'], unit='ms')
 

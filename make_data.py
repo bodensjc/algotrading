@@ -25,7 +25,7 @@ exchange = ccxt.binanceus({
 })
 
 import os
-os.chdir('C:\\Users\\johnb\\Documents\\algotrading')
+os.chdir('C:\\Users\\johnb\\Documents\\algotrading\\model')
 
 import csv
 

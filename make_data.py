@@ -162,7 +162,7 @@ def make_data():
         print('File opened.')
         datafile.writerow(['close', 'time', 'rsi', 'so', 'wr', 'emacd'])
         #ohlcv - [UTC, (O)pen, (H)ighest, (L)owest, (C)lose, (V)olume]
-        ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='5m', limit=1000)
+        ADAbars = exchange.fetch_ohlcv('ADA/USDT', timeframe='1h', limit=5000)
         ADAdata = pd.DataFrame(ADAbars[:-1], columns = ['timestamp', 'open', 'high', 'low', 'close', 'volume'])
         ADAdata['timestamp'] = pd.to_datetime(ADAdata['timestamp'], unit='ms')
 

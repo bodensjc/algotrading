@@ -143,9 +143,6 @@ def OBV(data):
 
 
 
-
-
-
 def first_run():
     global adaStack 
     datafile = open('datafile.txt', 'a')
@@ -273,7 +270,7 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
-    #account_test()
+    #main()
+    account_test()
 
 

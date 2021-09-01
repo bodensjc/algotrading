@@ -13,6 +13,7 @@ import time
 import math
 from itertools import islice
 
+#config is a local (secret) file comtaining api keys
 import config
 exchange = ccxt.binanceus({
     "apiKey": config.BINANCE_API_KEY,
